@@ -1,0 +1,115 @@
+{
+  "" : {
+    "const-values" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer-master.swiftconstvalues",
+    "dependencies" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer-master.d",
+    "diagnostics" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer-master.dia",
+    "emit-module-dependencies" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer-master-emit-module.dia",
+    "swift-dependencies" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer-master.swiftdeps"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/FoodCalorieAnalyzerApp.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzerApp.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzerApp.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzerApp.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Models/FoodAnalysis.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodAnalysis.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodAnalysis.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodAnalysis.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Services/CoreDataManager.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CoreDataManager.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CoreDataManager.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CoreDataManager.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Services/OpenAIService.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/OpenAIService.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/OpenAIService.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/OpenAIService.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Utils/Config.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/Config.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/Config.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/Config.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Utils/ImageCompressor.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ImageCompressor.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ImageCompressor.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ImageCompressor.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/ViewModels/AnalyzeFoodViewModel.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalyzeFoodViewModel.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalyzeFoodViewModel.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalyzeFoodViewModel.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/ViewModels/CameraViewModel.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CameraViewModel.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CameraViewModel.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CameraViewModel.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/ViewModels/HistoryViewModel.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/HistoryViewModel.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/HistoryViewModel.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/HistoryViewModel.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/AnalysisView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalysisView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalysisView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalysisView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/AnalyzeFoodView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalyzeFoodView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalyzeFoodView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/AnalyzeFoodView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/CameraView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CameraView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CameraView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/CameraView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/ContentView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/EditableAnalysisView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/EditableAnalysisView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/EditableAnalysisView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/EditableAnalysisView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/HistoryView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/HistoryView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/HistoryView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/HistoryView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/ImagePicker.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ImagePicker.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ImagePicker.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/ImagePicker.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/SweetpadView.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/SweetpadView.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/SweetpadView.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/SweetpadView.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/CoreDataGenerated/FoodCalorieAnalyzer/FoodCalorieAnalyzer+CoreDataModel.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer+CoreDataModel.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer+CoreDataModel.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodCalorieAnalyzer+CoreDataModel.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/CoreDataGenerated/FoodCalorieAnalyzer/FoodRecord+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodRecord+CoreDataClass.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodRecord+CoreDataClass.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodRecord+CoreDataClass.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/CoreDataGenerated/FoodCalorieAnalyzer/FoodRecord+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodRecord+CoreDataProperties.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodRecord+CoreDataProperties.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/FoodRecord+CoreDataProperties.o"
+  },
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

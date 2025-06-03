@@ -97,7 +97,7 @@ class CameraViewModel: NSObject, ObservableObject {
         Task {
             do {
                 print("DEBUG: Sending request to OpenAI API")
-                let analysis = try await OpenAIService.shared.analyzeFoodImage(compressedImageData)
+                let analysis = try await OpenAIService.shared.analyzeFoodImage(imageData: compressedImageData)
                 print("DEBUG: Received analysis from API: \(analysis)")
                 
                 // Save to Core Data and get the saved record

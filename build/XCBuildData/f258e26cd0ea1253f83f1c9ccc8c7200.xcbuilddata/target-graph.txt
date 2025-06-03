@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'FoodCalorieAnalyzer' in project 'FoodCalorieAnalyzer' (no dependencies)

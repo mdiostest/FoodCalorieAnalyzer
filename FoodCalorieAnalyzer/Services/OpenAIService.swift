@@ -1,301 +1,103 @@
 import Foundation
-import Network
+import Network // Import Network for NWPathMonitor
 
-// Temporary delegate class for initialization
-private class TempURLSessionDelegate: NSObject, URLSessionDelegate {}
+// Import the main module if Config and FoodAnalysis are defined there
+// import FoodCalorieAnalyzer
 
-class OpenAIService: NSObject {
-    static let shared = OpenAIService()
-    private let baseURL = Config.openAIBaseURL
-    private let apiKey = Config.openAIApiKey
-    private let maxRetries = 3
-    private let session: URLSession
-    private let monitor = NWPathMonitor()
-    private var isNetworkAvailable = false
-    private let operationQueue = OperationQueue()
-    private let networkQueue = DispatchQueue(label: "com.foodcalorieanalyzer.network", qos: .userInitiated)
-    private var connectionPool: [URLSessionDataTask] = []
-    private var currentTask: URLSessionDataTask?
+class OpenAIService: NSObject { // Inherit from NSObject for URLSessionDelegate (if needed)
     
-    private override init() {
+    // Use a shared singleton instance
+    static let shared = OpenAIService()
+    
+    private let baseURL: URL
+    private let apiKey: String
+    private let session: URLSession
+    
+    // Make the initializer public
+    public override init() { // Use override init if subclassing NSObject
+        // Reference Config using the module name if needed, e.g., FoodCalorieAnalyzer.Config
+        guard let baseUrl = URL(string: Config.openAIBaseURL) else {
+            fatalError("Invalid OpenAI Base URL in Config.swift")
+        }
+        self.baseURL = baseUrl
+        self.apiKey = Config.openAIApiKey
+        
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = Config.timeoutInterval
-        config.timeoutIntervalForResource = Config.timeoutInterval
-        config.waitsForConnectivity = true
-        config.allowsCellularAccess = true
-        config.allowsConstrainedNetworkAccess = true
-        config.allowsExpensiveNetworkAccess = true
+        config.tlsMinimumSupportedProtocol = .tlsProtocol12 // Deprecated, but keeping for now
+        config.tlsMaximumSupportedProtocol = .tlsProtocol13 // Deprecated, but keeping for now
         
-        // Add additional headers for better network handling
-        config.httpAdditionalHeaders = [
-            "Accept": "application/json",
-            "User-Agent": "FoodCalorieAnalyzer/1.0",
-            "Connection": "keep-alive",
-            "Keep-Alive": "timeout=60, max=1000"
-        ]
+        self.session = URLSession(configuration: config)
         
-        // Configure TLS settings
-        config.tlsMinimumSupportedProtocol = .tlsProtocol12
-        config.tlsMaximumSupportedProtocol = .tlsProtocol13
-        
-        // Configure connection pooling
-        config.httpMaximumConnectionsPerHost = 1
-        config.shouldUseExtendedBackgroundIdleMode = true
-        
-        // Disable QUIC to use basic HTTP/1.1
-        config.httpShouldUsePipelining = false
-        config.httpShouldSetCookies = false
-        
-        // Configure operation queue
-        operationQueue.maxConcurrentOperationCount = 1
-        operationQueue.qualityOfService = .userInitiated
-        
-        // Create a temporary delegate
-        let delegate = TempURLSessionDelegate()
-        
-        // Initialize session with delegate before super.init()
-        self.session = URLSession(configuration: config, delegate: delegate, delegateQueue: operationQueue)
-        
-        super.init()
-        
-        // Start network monitoring
-        monitor.pathUpdateHandler = { [weak self] path in
-            self?.isNetworkAvailable = path.status == .satisfied
-            print("DEBUG: Network status changed - Available: \(self?.isNetworkAvailable ?? false)")
-            
-            // Log network type
-            if path.usesInterfaceType(.wifi) {
-                print("DEBUG: Using WiFi connection")
-            } else if path.usesInterfaceType(.cellular) {
-                print("DEBUG: Using cellular connection")
-            }
-            
-            // Log connection quality
-            if path.isExpensive {
-                print("DEBUG: Connection is expensive (e.g., cellular data)")
-            }
-            if path.isConstrained {
-                print("DEBUG: Connection is constrained (e.g., low data mode)")
-            }
-            
-            // If network becomes available, retry any failed request
-            if path.status == .satisfied {
-                print("DEBUG: Network became available, ready for requests")
-            }
-        }
-        monitor.start(queue: networkQueue)
+        super.init() // Call super.init()
     }
     
-    deinit {
-        monitor.cancel()
-        session.invalidateAndCancel()
-        connectionPool.forEach { $0.cancel() }
-        currentTask?.cancel()
-    }
-    
+    // Helper function to wait for network connectivity
     private func waitForNetwork() async throws {
-        if isNetworkAvailable {
-            return
-        }
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "NetworkMonitor")
         
-        print("DEBUG: Waiting for network connection...")
-        for attempt in 0..<10 { // Wait up to 10 seconds
-            if isNetworkAvailable {
-                print("DEBUG: Network connection established")
-                return
+        return try await withCheckedThrowingContinuation { continuation in
+            monitor.pathUpdateHandler = { path in
+                if path.status == .satisfied {
+                    monitor.cancel()
+                    continuation.resume(with: .success(()))
+                }
+                // Add other path status handling if necessary
             }
-            print("DEBUG: Network wait attempt \(attempt + 1)/10")
-            try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
+            monitor.start(queue: queue)
         }
-        throw NSError(domain: "OpenAI", code: -1, userInfo: [NSLocalizedDescriptionKey: "No network connection available. Please check your internet connection and try again."])
     }
     
-    private func createRequest(with imageData: Data) throws -> URLRequest {
-        let base64Image = imageData.base64EncodedString()
+    // Function to analyze food image using OpenAI Vision API
+    func analyzeFoodImage(imageData: Data) async throws -> FoodAnalysis {
+        try await waitForNetwork()
         
-        let prompt = """
-        Analyze this food image and provide the following information in JSON format:
-        {
-            "foodName": "name of the food",
-            "calories": number,
-            "protein": number in grams,
-            "carbs": number in grams,
-            "fat": number in grams,
-            "ingredients": ["list", "of", "ingredients"]
-        }
-        """
-        
-        let requestBody: [String: Any] = [
-            "model": "gpt-4-vision-preview",
-            "messages": [
-                [
-                    "role": "user",
-                    "content": [
-                        [
-                            "type": "text",
-                            "text": prompt
-                        ],
-                        [
-                            "type": "image_url",
-                            "image_url": [
-                                "url": "data:image/jpeg;base64,\(base64Image)"
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "max_tokens": 500
-        ]
-        
-        guard let url = URL(string: baseURL + Config.visionEndpoint) else {
+        guard let url = URL(string: baseURL.absoluteString + Config.visionEndpoint) else {
             throw URLError(.badURL)
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(apiKey.trimmingCharacters(in: .whitespacesAndNewlines))", forHTTPHeaderField: "Authorization")
-        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         
-        // Force HTTP/1.1
-        request.setValue("HTTP/1.1", forHTTPHeaderField: "Connection")
+        let base64Image = imageData.base64EncodedString()
         
-        return request
-    }
-    
-    func analyzeFoodImage(_ imageData: Data) async throws -> FoodAnalysis {
-        try await waitForNetwork()
+        let payload: [String: Any] = [
+            "model": "gpt-4o", // Using gpt-4o as it is the latest and supports vision
+            "messages": [
+                [
+                    "role": "user",
+                    "content": [
+                        ["type": "text", "text": "Analyze this food image and provide a structured JSON response with food name, calories, protein (g), carbs (g), fat (g), and a list of ingredients. If you cannot identify the food or its details, provide a default structure with null or zero values. Ensure the response is ONLY the JSON object."],
+                        ["type": "image_url", "image_url": ["url": "data:image/jpeg;base64,\(base64Image)"]]
+                    ]
+                ]
+            ],
+            "max_tokens": 500 // Increased tokens to ensure full JSON response
+        ]
         
-        let request = try createRequest(with: imageData)
-        print("DEBUG: Making API request to: \(request.url?.absoluteString ?? "")")
-        print("DEBUG: Request headers: \(request.allHTTPHeaderFields ?? [:])")
+        let httpBody = try JSONSerialization.data(withJSONObject: payload, options: [])
+        request.httpBody = httpBody
         
-        var retryCount = 0
-        var lastError: Error?
+        let (data, response) = try await session.data(for: request)
         
-        while retryCount < maxRetries {
-            do {
-                // Cancel any existing task
-                currentTask?.cancel()
-                
-                let (data, response) = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<(Data, URLResponse), Error>) in
-                    let task = session.dataTask(with: request) { [weak self] data, response, error in
-                        if let error = error {
-                            print("DEBUG: Network error: \(error.localizedDescription)")
-                            continuation.resume(throwing: error)
-                            return
-                        }
-                        guard let data = data, let response = response else {
-                            print("DEBUG: No data or response received")
-                            continuation.resume(throwing: URLError(.badServerResponse))
-                            return
-                        }
-                        continuation.resume(returning: (data, response))
-                    }
-                    
-                    // Store current task
-                    self.currentTask = task
-                    
-                    // Add task to connection pool
-                    connectionPool.append(task)
-                    task.resume()
-                }
-                
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    print("DEBUG: Invalid response type")
-                    throw URLError(.badServerResponse)
-                }
-                
-                print("DEBUG: Response status code: \(httpResponse.statusCode)")
-                
-                if let responseString = String(data: data, encoding: .utf8) {
-                    print("DEBUG: Response body: \(responseString)")
-                }
-                
-                switch httpResponse.statusCode {
-                case 200...299:
-                    // Success case
-                    let decoder = JSONDecoder()
-                    let openAIResponse = try decoder.decode(OpenAIResponse.self, from: data)
-                    
-                    guard let content = openAIResponse.choices.first?.message.content,
-                          let jsonData = content.data(using: String.Encoding.utf8) else {
-                        print("DEBUG: Failed to extract content from response")
-                        throw URLError(.cannotParseResponse)
-                    }
-                    
-                    print("DEBUG: Extracted content: \(content)")
-                    
-                    let foodAnalysis = try decoder.decode(FoodAnalysis.self, from: jsonData)
-                    return foodAnalysis
-                    
-                case 401:
-                    throw NSError(domain: "OpenAI", code: 401, userInfo: [NSLocalizedDescriptionKey: "Authentication failed. Please check your API key."])
-                    
-                case 404:
-                    if let errorJson = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                       let errorMessage = errorJson["error"] as? [String: Any],
-                       let message = errorMessage["message"] as? String {
-                        throw NSError(domain: "OpenAI", code: 404, userInfo: [NSLocalizedDescriptionKey: message])
-                    }
-                    throw URLError(.badServerResponse)
-                    
-                default:
-                    if let errorJson = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                       let errorMessage = errorJson["error"] as? [String: Any],
-                       let message = errorMessage["message"] as? String {
-                        throw NSError(domain: "OpenAI", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: message])
-                    }
-                    throw URLError(.badServerResponse)
-                }
-                
-            } catch {
-                lastError = error
-                print("DEBUG: Attempt \(retryCount + 1) failed with error: \(error)")
-                
-                // Don't retry on authentication errors
-                if let nsError = error as NSError?,
-                   nsError.domain == "OpenAI" && nsError.code == 401 {
-                    throw error
-                }
-                
-                if retryCount < maxRetries - 1 {
-                    retryCount += 1
-                    let delay = pow(2.0, Double(retryCount)) // Exponential backoff
-                    print("DEBUG: Retrying in \(delay) seconds...")
-                    try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
-                    continue
-                }
-                break
-            }
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+            let responseBody = String(data: data, encoding: .utf8) ?? "N/A"
+            throw NSError(domain: "OpenAIServiceError", code: statusCode, userInfo: [NSLocalizedDescriptionKey: "API request failed with status code \(statusCode). Response body: \(responseBody)"])
         }
         
-        print("DEBUG: All retry attempts failed")
-        throw lastError ?? URLError(.unknown)
+        // Attempt to parse JSON response
+        // The API response should now be ONLY the JSON object based on the prompt.
+        let foodAnalysis = try JSONDecoder().decode(FoodAnalysis.self, from: data)
+        
+        return foodAnalysis
     }
 }
 
-// MARK: - URLSessionDelegate
-extension OpenAIService: URLSessionDelegate {
-    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-        print("DEBUG: URLSession became invalid with error: \(error?.localizedDescription ?? "none")")
-    }
-    
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        print("DEBUG: Received authentication challenge")
-        completionHandler(.performDefaultHandling, nil)
-    }
-}
-
-// OpenAI API response models
-struct OpenAIResponse: Codable {
-    let choices: [Choice]
-}
-
-struct Choice: Codable {
-    let message: Message
-}
-
-struct Message: Codable {
-    let content: String
-} 
+// Assuming FoodAnalysis struct is defined elsewhere and is Decodable
+// struct FoodAnalysis: Codable, Identifiable { var id: UUID; var foodName: String; var calories: Int; var protein: Double; carbs: Double; fat: Double; ingredients: [String]; timestamp: Date }
+// Assuming Config is an enum or struct with static properties accessible here
+// enum Config { static let openAIBaseURL: URL; static let openAIApiKey: String; static let visionEndpoint: String; static let timeoutInterval: TimeInterval } 

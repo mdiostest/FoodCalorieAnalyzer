@@ -1,0 +1,40 @@
+{
+  "source": "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/HistoryView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Food History",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Select Date",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 12
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "%d cal",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 74
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -22,8 +22,10 @@ An iOS application that analyzes food calories and nutrients from photos using O
 ## Installation
 1. Clone the repository
 2. Open `FoodCalorieAnalyzer.xcodeproj` in Xcode
-3. Add your OpenAI API key in `Config.swift`
-4. Build and run the project
+3. Obtain your OpenAI API key from [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
+4. In the `FoodCalorieAnalyzer/Utils/Config.swift` file, replace `"YOUR_API_KEY_HERE"` with your actual API key.
+    **Important:** Do not commit your actual API key to version control.
+5. Build and run the project
 
 ## Development Setup
 1. Install required tools:

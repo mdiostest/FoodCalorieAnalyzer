@@ -1,5 +1,6 @@
 import SwiftUI
 import AVFoundation
+import UIKit
 
 struct CameraView: View {
     @StateObject private var viewModel = CameraViewModel()
@@ -146,7 +147,7 @@ struct FoodDetailsView: View {
             .font(.subheadline)
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(UIColor.systemGray6))
         .cornerRadius(10)
         .padding(.horizontal)
     }

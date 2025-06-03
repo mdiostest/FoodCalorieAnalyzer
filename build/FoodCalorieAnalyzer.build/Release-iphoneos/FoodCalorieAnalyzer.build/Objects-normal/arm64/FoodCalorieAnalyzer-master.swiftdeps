@@ -1,0 +1,30 @@
+version: "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)"
+options: "7f940b49ae3de88aade161e2313b5cb2b4ce0051f6857d39abf778e40e699044"
+build_start_time: [1748943181, 746147000]
+build_end_time: [1748943186, 840476000]
+inputs:
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/FoodCalorieAnalyzerApp.swift": [1748937698, 317729557]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Models/FoodAnalysis.swift": [1748937127, 960716723]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Services/CoreDataManager.swift": [1748937554, 283760009]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Services/OpenAIService.swift": [1748941660, 180220563]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Utils/Config.swift": [1748943074, 869568211]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Utils/ImageCompressor.swift": [1748933709, 352055123]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/ViewModels/AnalyzeFoodViewModel.swift": [1748942833, 635656613]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/ViewModels/CameraViewModel.swift": [1748939983, 174505905]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/ViewModels/HistoryViewModel.swift": [1748937619, 771346525]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/AnalysisView.swift": [1748937641, 559690564]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/AnalyzeFoodView.swift": [1748940434, 699407615]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/CameraView.swift": [1748938847, 225606375]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/ContentView.swift": [1748939470, 794698705]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/EditableAnalysisView.swift": [1748933709, 353455415]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/HistoryView.swift": [1748935934, 116931535]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/ImagePicker.swift": [1748933709, 353847987]
+  "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/FoodCalorieAnalyzer/Views/SweetpadView.swift": [1748935908, 885811407]
+  ? "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/CoreDataGenerated/FoodCalorieAnalyzer/FoodCalorieAnalyzer+CoreDataModel.swift"
+  : [1748943181, 535727951]
+  ? "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/CoreDataGenerated/FoodCalorieAnalyzer/FoodRecord+CoreDataClass.swift"
+  : [1748943181, 537766890]
+  ? "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/CoreDataGenerated/FoodCalorieAnalyzer/FoodRecord+CoreDataProperties.swift"
+  : [1748943181, 538601199]
+  ? "/Users/mrigankade/Desktop/FoodCalorieAnalyzer/build/FoodCalorieAnalyzer.build/Release-iphoneos/FoodCalorieAnalyzer.build/DerivedSources/GeneratedAssetSymbols.swift"
+  : [1748943180, 729304915]
