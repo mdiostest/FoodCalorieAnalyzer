@@ -1,22 +1,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 0
+    
     var body: some View {
-        TabView {
-            CameraView()
+        TabView(selection: $selectedTab) {
+            SweetpadView()
                 .tabItem {
-                    Label("Camera", systemImage: "camera")
+                    Label("Analyze", systemImage: "camera.viewfinder")
                 }
+                .tag(0)
             
             HistoryView()
                 .tabItem {
-                    Label("History", systemImage: "calendar")
+                    Label("History", systemImage: "clock")
                 }
-            
-            SweetpadView()
-                .tabItem {
-                    Label("Keyboard", systemImage: "keyboard")
-                }
+                .tag(1)
         }
     }
 }

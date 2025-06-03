@@ -1,5 +1,8 @@
-import CoreData
 import Foundation
+import CoreData
+import SwiftUI
+// If needed, import the app module for FoodRecord
+// import FoodCalorieAnalyzer
 
 class CoreDataManager {
     static let shared = CoreDataManager()
@@ -20,44 +23,48 @@ class CoreDataManager {
         return container
     }()
     
-    var context: NSManagedObjectContext {
+    var viewContext: NSManagedObjectContext {
         persistentContainer.viewContext
     }
     
     func saveContext() {
-        if context.hasChanges {
+        if viewContext.hasChanges {
             do {
-                try context.save()
+                try viewContext.save()
             } catch {
-                print("Error saving context: \(error)")
+                let error = error as NSError
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
     }
     
     // MARK: - Food Record Operations
     
-    func saveFoodRecord(from analysis: FoodAnalysis, imageData: Data?) -> FoodRecord {
-        let record = FoodRecord(context: context)
-        record.id = analysis.id
+    func createFoodRecord(from analysis: FoodAnalysis) -> FoodRecord {
+        let record = FoodRecord(context: viewContext)
+        record.id = UUID()
         record.foodName = analysis.foodName
         record.calories = Int32(analysis.calories)
         record.protein = analysis.protein
         record.carbs = analysis.carbs
         record.fat = analysis.fat
-        record.ingredients = analysis.ingredients as NSArray
-        record.timestamp = analysis.timestamp
-        record.imageData = imageData
-        
+        record.timestamp = Date()
+        record.ingredients = analysis.ingredients
         saveContext()
         return record
     }
     
-    func fetchFoodRecords() -> [FoodRecord] {
+    func fetchFoodRecords(for date: Date) -> [FoodRecord] {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        
         let request: NSFetchRequest<FoodRecord> = FoodRecord.fetchRequest()
+        request.predicate = NSPredicate(format: "timestamp >= %@ AND timestamp < %@", startOfDay as NSDate, endOfDay as NSDate)
         request.sortDescriptors = [NSSortDescriptor(keyPath: \FoodRecord.timestamp, ascending: false)]
         
         do {
-            return try context.fetch(request)
+            return try viewContext.fetch(request)
         } catch {
             print("Error fetching food records: \(error)")
             return []
@@ -65,7 +72,7 @@ class CoreDataManager {
     }
     
     func deleteFoodRecord(_ record: FoodRecord) {
-        context.delete(record)
+        viewContext.delete(record)
         saveContext()
     }
     

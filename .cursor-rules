@@ -1,0 +1,23 @@
+# Custom Cursor Rules for Food Calorie Analyzer
+
+## Coding Standards
+- Use Swift 5.0 syntax and features.
+- Follow MVVM architecture for all views and view models.
+- Use SwiftUI for UI components.
+- Ensure all files are included in the main app target.
+
+## Best Practices
+- Write clear, descriptive commit messages for each feature or fix.
+- Use meaningful variable and function names.
+- Comment complex logic for clarity.
+- Ensure error handling is robust and user-friendly.
+
+## Testing
+- Test all features on both simulator and real devices.
+- Use SweetPad for simulator testing.
+- Ensure all UI elements are responsive and functional.
+
+## Documentation
+- Keep README.md updated with installation and build steps.
+- Document API integration and data models in instruction.md.
+- Use .cursor-rules to enforce coding standards. 

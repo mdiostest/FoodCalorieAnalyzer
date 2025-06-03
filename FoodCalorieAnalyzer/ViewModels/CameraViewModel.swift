@@ -101,7 +101,9 @@ class CameraViewModel: NSObject, ObservableObject {
                 print("DEBUG: Received analysis from API: \(analysis)")
                 
                 // Save to Core Data and get the saved record
-                let savedRecord = CoreDataManager.shared.saveFoodRecord(from: analysis, imageData: compressedImageData)
+                let savedRecord = CoreDataManager.shared.createFoodRecord(from: analysis)
+                savedRecord.imageData = compressedImageData
+                CoreDataManager.shared.saveContext()
                 print("DEBUG: Saved record to Core Data")
                 
                 DispatchQueue.main.async {

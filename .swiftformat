@@ -1,0 +1,36 @@
+--swiftversion 5.0
+--indent 4
+--allman false
+--binarygrouping 4,8
+--commas inline
+--comments indent
+--decimalgrouping 3,6
+--elseposition same-line
+--empty void
+--fractiongrouping 3,6
+--header strip
+--hexgrouping 4,8
+--hexliteralcase uppercase
+--ifdef indent
+--indentcase false
+--linebreaks lf
+--octalgrouping 4,8
+--operatorfunc spaced
+--patternlet inline
+--ranges spaced
+--self insert
+--semicolons inline
+--stripunusedargs unnamed-only
+--trimwhitespace always
+--wraparguments before-first
+--wrapcollections before-first
+--wrapconditions before-first
+--wraptypealiases before-first
+--wrapternary before-first
+
+import SwiftUI
+import AVFoundation
+
+.environment(\.managedObjectContext, persistenceController.viewContext) 
+
+.background(Color(UIColor.systemGray6)) 

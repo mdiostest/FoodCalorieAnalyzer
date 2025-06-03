@@ -7,7 +7,7 @@ struct FoodCalorieAnalyzerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.context)
+                .environment(\.managedObjectContext, persistenceController.viewContext)
         }
     }
 } 

@@ -96,7 +96,7 @@ struct CameraView: View {
             }
             .sheet(isPresented: $showingAnalysis) {
                 if let record = viewModel.foodAnalysisRecord {
-                    AnalysisView(record: record)
+                    AnalysisView(record: record, viewModel: HistoryViewModel())
                 }
             }
             .alert("Error", isPresented: $showingErrorAlert) {

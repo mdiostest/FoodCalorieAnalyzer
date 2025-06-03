@@ -2,62 +2,64 @@ import SwiftUI
 
 struct AnalysisView: View {
     let record: FoodRecord
-    @State private var foodAnalysis: FoodAnalysis
+    @ObservedObject var viewModel: HistoryViewModel
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var viewModel = HistoryViewModel()
-    
-    init(record: FoodRecord) {
-        self.record = record
-        _foodAnalysis = State(initialValue: FoodAnalysis(
-            foodName: record.foodName ?? "Unknown Food",
-            calories: Int(record.calories),
-            protein: record.protein,
-            carbs: record.carbs,
-            fat: record.fat,
-            ingredients: record.ingredients as? [String] ?? []
-        ))
-    }
     
     var body: some View {
         NavigationView {
-            VStack {
-                if let imageData = record.imageData,
-                   let uiImage = UIImage(data: imageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 200)
-                        .cornerRadius(10)
-                        .padding()
+            Form {
+                Section(header: Text("Food Details")) {
+                    TextField("Food Name", text: .constant(record.foodName ?? ""))
+                    TextField("Calories", value: .constant(Int(record.calories)), formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
                 }
                 
-                EditableAnalysisView(foodAnalysis: $foodAnalysis)
+                Section(header: Text("Nutrition")) {
+                    HStack {
+                        Text("Protein")
+                        Spacer()
+                        TextField("Protein", value: .constant(record.protein), formatter: NumberFormatter())
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    
+                    HStack {
+                        Text("Carbs")
+                        Spacer()
+                        TextField("Carbs", value: .constant(record.carbs), formatter: NumberFormatter())
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    
+                    HStack {
+                        Text("Fat")
+                        Spacer()
+                        TextField("Fat", value: .constant(record.fat), formatter: NumberFormatter())
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                    }
+                }
+                
+                Section(header: Text("Ingredients")) {
+                    ForEach(record.ingredients as? [String] ?? [], id: \.self) { ingredient in
+                        Text(ingredient)
+                    }
+                }
             }
-            .navigationTitle("Food Analysis")
+            .navigationTitle("Edit Food Record")
             .navigationBarItems(
                 leading: Button("Cancel") {
                     dismiss()
                 },
                 trailing: Button("Save") {
-                    saveChanges()
+                    viewModel.updateFoodRecord(record)
                     dismiss()
                 }
             )
         }
     }
-    
-    private func saveChanges() {
-        record.foodName = foodAnalysis.foodName
-        record.calories = Int32(foodAnalysis.calories)
-        record.protein = foodAnalysis.protein
-        record.carbs = foodAnalysis.carbs
-        record.fat = foodAnalysis.fat
-        record.ingredients = foodAnalysis.ingredients as NSArray
-        
-        viewModel.updateRecord(record)
-    }
 }
 
 #Preview {
-    AnalysisView(record: FoodRecord())
+    AnalysisView(record: FoodRecord(), viewModel: HistoryViewModel())
 } 

@@ -19,8 +19,8 @@ class OpenAIService: NSObject {
     
     private override init() {
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 60
-        config.timeoutIntervalForResource = 300
+        config.timeoutIntervalForRequest = Config.timeoutInterval
+        config.timeoutIntervalForResource = Config.timeoutInterval
         config.waitsForConnectivity = true
         config.allowsCellularAccess = true
         config.allowsConstrainedNetworkAccess = true

@@ -1,14 +1,15 @@
 # Food Calorie Analyzer iOS App
 
-An iOS application that analyzes food calories and nutrients from photos using OpenAI's Vision API.
+An iOS application that analyzes food calories and nutrients from photos using OpenAI's Vision API. Built with SwiftUI, Core Data, and modern iOS development tools.
 
 ## Features
-- Camera capture for food photos
-- OpenAI Vision API integration for food analysis
-- Editable ingredient view with real-time calorie updates
-- History/calendar log view for food records
-- MVVM architecture
-- Core Data integration for local storage
+- Food analysis using OpenAI Vision API
+- Custom keyboard for food input (SweetPad integration)
+- Real-time calorie and nutrient analysis
+- Beautiful and intuitive UI
+- History view with calendar integration
+- Core Data persistence
+- Image compression optimization
 
 ## Requirements
 - iOS 15.0+
@@ -24,40 +25,49 @@ An iOS application that analyzes food calories and nutrients from photos using O
 3. Add your OpenAI API key in `Config.swift`
 4. Build and run the project
 
+## Development Setup
+1. Install required tools:
+   ```bash
+   brew install xcode-build-server
+   brew install xcbeautify
+   brew install swiftformat
+   ```
+
+2. Configure SwiftFormat:
+   - The project includes a `.swiftformat` configuration file
+   - Run `swiftformat .` to format all Swift files
+
+3. Set up SweetPad:
+   - Install SweetPad VS Code extension
+   - Configure simulator display settings
+
 ## Project Structure
 - `Views/`: SwiftUI views
-  - `CameraView.swift`: Camera interface and photo capture
-  - `ImagePicker.swift`: Photo library picker
-  - `AnalysisView.swift`: Food analysis results and editing
+  - `SweetpadView.swift`: Main food analysis interface
   - `HistoryView.swift`: Food history and calendar view
+  - `ContentView.swift`: Main tab navigation
 - `ViewModels/`: MVVM view models
-  - `CameraViewModel.swift`: Camera and analysis logic
   - `HistoryViewModel.swift`: History management
 - `Models/`: Data models
   - `FoodAnalysis.swift`: Food analysis data structure
   - `CoreData/`: Core Data models and persistence
-- `Services/`: API and camera services
+- `Services/`: API and data services
   - `OpenAIService.swift`: OpenAI Vision API integration
-- `Utils/`: Helper functions and extensions
-  - `Config.swift`: Configuration settings
+  - `CoreDataManager.swift`: Core Data persistence
+- `Utils/`: Helper functions
   - `ImageCompressor.swift`: Image optimization
 
-## Development Setup
-1. Install Cursor IDE
-2. Install SweetPad VS Code extension
-3. Configure OpenAI API key
-4. Build and run on iOS simulator or device
-
-## Build Steps
-1. Open project in Xcode
-2. Select target device/simulator
-3. Build and run (⌘R)
+## Development Workflow
+1. Use Cursor IDE for development
+2. Format code with SwiftFormat
+3. Test on iOS simulator with SweetPad
+4. Commit changes with meaningful messages
 
 ## Testing
-- Camera functionality works on both simulator and device
-- OpenAI API integration tested with sample images
+- Food analysis works in simulator
+- History view displays records correctly
 - Core Data persistence verified
-- UI responsiveness checked on different device sizes
+- UI responsiveness checked
 
 ## License
 MIT License 

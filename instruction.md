@@ -1,42 +1,63 @@
-# Food Calorie Analyzer - Product Requirements Document
+# Food Calorie Analyzer - Product Requirements Document (PRD)
 
 ## Overview
-Food Calorie Analyzer is an iOS application that uses AI to analyze food photos and provide nutritional information. The app leverages OpenAI's Vision API to identify food items and their nutritional content.
+The Food Calorie Analyzer is an iOS app that allows users to take a photo of food, analyze its ingredients and calorie information using the OpenAI Vision API, edit the analyzed data, and save logs to a calendar history.
 
-## Core Features
+## Features
+1. **Camera Capture:**
+   - Users can take a photo of food using the device camera or simulator.
+   - Support for both real device and simulator environments.
 
-### 1. Camera & Photo Capture
-- Camera interface with live preview
-- Photo capture functionality
-- Photo library access
-- Image compression before API submission
-- Support for both front and back cameras
+2. **Food Analysis:**
+   - Integration with OpenAI Vision API to analyze food images.
+   - Structured JSON response for ingredient and calorie details.
 
-### 2. Food Analysis
-- OpenAI Vision API integration
-- Structured JSON response parsing
-- Nutritional information extraction:
-  - Food name
-  - Calories
-  - Protein (g)
-  - Carbs (g)
-  - Fat (g)
-  - Ingredients list
+3. **Editable Analysis:**
+   - Users can edit the analyzed data, including ingredients and calorie information.
+   - Real-time updates to calorie calculations.
 
-### 3. Data Management
-- Core Data integration for local storage
-- Food analysis history
-- Calendar view of food records
-- Editable analysis results
-- Real-time calorie updates
+4. **History/Calendar Log:**
+   - Save analyzed food records to a calendar history.
+   - View past food logs with details.
 
-### 4. User Interface
-- Clean, intuitive design
-- Camera view with capture controls
-- Analysis results view
-- Editable ingredient list
-- History/calendar view
-- Loading states and error handling
+## API Integration
+- **OpenAI Vision API:**
+  - Endpoint: `https://api.openai.com/v1/chat/completions`
+  - API Key: Use a test key for development.
+  - Structured JSON response for food analysis.
+
+## Data Models
+- **FoodAnalysis:**
+  - Properties: `foodName`, `calories`, `protein`, `carbs`, `fat`, `ingredients`.
+  - Used to store and display analyzed food details.
+
+- **FoodRecord:**
+  - Core Data entity for persisting food analysis records.
+  - Properties: `foodName`, `calories`, `protein`, `carbs`, `fat`, `ingredients`, `timestamp`.
+
+## Development Tools
+- **Cline (VS Code AI extension):** For AI agent-based development.
+- **SweetPad (VS Code iOS extension):** For simulator testing.
+- **Xcode:** For project base and iOS development.
+- **GitHub:** For version control and commit history.
+
+## Deliverables
+- Fully functional iOS app with all features implemented.
+- Development assets: `instruction.md`, `.cursor-rules`, `README.md`.
+- GitHub repo with commit history.
+
+## Evaluation Criteria
+- Use of AI tools (Cursor, SweetPad, LLM prompting).
+- Working feature set.
+- Debugging via Cursor AI logs.
+- Code structure: MVVM preferred.
+- UI: Basic, but functional.
+- Clarity in instruction.md and .cursor-rules.
+
+## Bonus (Optional)
+- Image compression optimization before sending to OpenAI.
+- UI improvement (better camera/edit screens).
+- Deployment on TestFlight.
 
 ## Technical Specifications
 
